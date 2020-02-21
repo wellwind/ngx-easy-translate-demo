@@ -2,3 +2,8 @@
 <button (click)="changeLang('zh')">ZH</button>
 <h1>{{ 'title' | translate }}</h1>
 <div>{{ (translate | async)?.description }}</div>
+
+<a [routerLink]="['/home']">Home</a> |
+<a [routerLink]="['/about']">About</a>
+
+<router-outlet></router-outlet>
