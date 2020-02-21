@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import {
+  NgxEasyTranslateService,
+  ROOT_TRANSLATE
+} from '@wellwind/ngx-easy-translate';
+import { Observable } from 'rxjs';
+import { RootTranslate } from './type';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +12,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngx-easy-translate-demo';
+  get translate() {
+    return this.rootTranslate;
+  }
+
+  constructor(
+    private translateService: NgxEasyTranslateService,
+    @Inject(ROOT_TRANSLATE) private rootTranslate: Observable<RootTranslate>
+  ) {}
+
+  changeLang(lang: string) {
+    this.translateService.changeCurrentLanguage(lang);
+  }
 }
